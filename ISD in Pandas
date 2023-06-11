@@ -1,0 +1,16 @@
+!pip uninstall -y azureml-opendatasets
+!pip install azureml-opendatasets
+
+
+from azureml.opendatasets import NoaaIsdWeather
+
+from datetime import datetime
+from dateutil import parser
+from dateutil.relativedelta import relativedelta
+
+
+start_date = parser.parse('2018-1-1')
+end_date = parser.parse('2018-2-28')
+isd = NoaaIsdWeather(start_date, end_date)
+isd.to_pandas_dataframe().info()
+print('isd done')
